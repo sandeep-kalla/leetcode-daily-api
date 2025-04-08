@@ -10,7 +10,13 @@ import leetcodeRoutes from './routes/leetcode.routes.js';
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: true, // Allow requests from any origin that includes credentials
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'x-csrftoken', 'Cookie', 'Origin', 'Referer', 'User-Agent'],
+  exposedHeaders: ['set-cookie'],
+  methods: ['GET', 'POST', 'OPTIONS']
+}));
 app.use(express.json());
 
 // Environment variables
